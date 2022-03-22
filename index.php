@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +15,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" href="./assets/img/fav-icon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./assets/vendor/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="./assets/css/style.min.css">
 	<!-- [if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<![endif] -->
@@ -24,6 +25,11 @@
 </head>
 
 <body>
+
+	<?php if (isset($_SESSION["msg"]["result"]) && !empty($_SESSION["msg"]["result"])) : ?>
+		<?php unset($_SESSION["msg"]["result"]) ?>
+	<?php endif ?>
+
 	<div class="container-fluid">
 
 		<div class="d-flex flex-column justify-content-center align-items-center text-center vh-100">
@@ -40,6 +46,19 @@
 						<input type="text" class="text-center" name="number" placeholder="Enter Your Number" minlength="1" maxlength="3" autofocus required>
 					</div>
 
+					<?php if (isset($_SESSION["msg"]["error"]) && !empty($_SESSION["msg"]["error"])) : ?>
+
+						<div class="row justify-content-center mt-4">
+							<div class="col-6">
+								<div class="alert alert-danger">
+									<?= $_SESSION["msg"]["error"] ?>
+								</div>
+							</div>
+						</div>
+
+						<?php unset($_SESSION["msg"]["error"]) ?>
+					<?php endif ?>
+
 					<div class="mt-3">
 						<button type="submit" class="btn" name="send" value="check">check</button>
 					</div>
@@ -48,8 +67,8 @@
 
 				<div class="row mt-4">
 					<div>
-						<p>000</p>
-						<p>000</p>
+						<p>Your Number : <?= $_SESSION["numbers"]["number"] ?? "000" ?></p>
+						<p>Our Number : <?= $_SESSION["numbers"]["rand_num"] ?? "000" ?></p>
 					</div>
 				</div>
 			</div>
