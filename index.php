@@ -6,25 +6,39 @@
 	<title>PHP Number guessing game</title>
 	<meta charset="UTF-8">
 	<meta name="language" content="en">
-	<meta name=”robots” content="index , follow">
-	<!-- todo : add github links -->
-	<meta name="designer" content="Nima jahan bakhshian">
-	<meta name="owner" content="Nima jahan bakhshian">
+	<meta name="robots" content="index , follow">
+	<meta name="designer" content="Nima jahan bakhshian / https://github.com/dvlpr1996/php-number-guessing">
+	<meta name="owner" content="Nima jahan bakhshian / https://github.com/dvlpr1996/php-number-guessing">
 	<meta name="description" content="The user has to guess the randomly generated number that lies between the range from 1 to 500">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" href="./assets/img/fav-icon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./assets/vendor/bootstrap/bootstrap.min.css">
+	<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 	<link rel="stylesheet" href="./assets/css/style.min.css">
+	<script src="assets/vendor/jquery/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- [if lt IE 9]>
 		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<![endif] -->
-	<style>
-
-	</style>
 </head>
 
 <body>
+
+	<?php if (isset($_SESSION["msg"]["result"]) && $_SESSION["msg"]["result"]) : ?>
+		<script>
+			$(document).ready(function() {
+				Swal.fire({
+					icon: 'success',
+					title: 'Congratulations',
+					text: 'Your number is equal to the number produced',
+					timer: 3000,
+					position: 'top-end',
+					showConfirmButton: false,
+				});
+			});
+		</script>
+	<?php endif ?>
 
 	<?php if (isset($_SESSION["msg"]["result"]) && !empty($_SESSION["msg"]["result"])) : ?>
 		<?php unset($_SESSION["msg"]["result"]) ?>
@@ -43,7 +57,7 @@
 				<form action="process/action.php" method="POST" class="mt-2">
 
 					<div>
-						<input type="text" class="text-center" name="number" placeholder="Enter Your Number" minlength="1" maxlength="3" autofocus required>
+						<input type="text" class="text-center" name="number" placeholder="Enter Your Number" minlength="1" maxlength="3" autofocus required autocomplete="off">
 					</div>
 
 					<?php if (isset($_SESSION["msg"]["error"]) && !empty($_SESSION["msg"]["error"])) : ?>
@@ -60,7 +74,7 @@
 					<?php endif ?>
 
 					<div class="mt-3">
-						<button type="submit" class="btn" name="send" value="check">check</button>
+						<button type="submit" class="btn" name="send" value="check" id="btn">check</button>
 					</div>
 
 				</form>
@@ -69,6 +83,10 @@
 					<div>
 						<p>Your Number : <?= $_SESSION["numbers"]["number"] ?? "000" ?></p>
 						<p>Our Number : <?= $_SESSION["numbers"]["rand_num"] ?? "000" ?></p>
+
+						<?php unset($_SESSION["numbers"]["number"]) ?>
+						<?php unset($_SESSION["numbers"]["rand_num"]) ?>
+
 					</div>
 				</div>
 			</div>

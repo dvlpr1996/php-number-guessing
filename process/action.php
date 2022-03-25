@@ -50,6 +50,8 @@ try {
 
 	$rand_num = mt_rand(1, 500);
 
+	$_SESSION["msg"]["result"] = false;
+
 	if ($rand_num == $number) {
 		$_SESSION["msg"]["result"] = TRUE;
 	}
