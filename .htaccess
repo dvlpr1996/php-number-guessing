@@ -4,8 +4,6 @@
 	Deny from all
 </Files>
 
-# Deny access to action.php
-<Files action.php>
-	Order allow,deny
-	Deny from all
-</Files>
+# Custom 403 errors
+RewriteEngine on
+ErrorDocument 403 http://localhost/dev/php-number-guessing/403.html
