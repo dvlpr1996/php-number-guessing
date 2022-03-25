@@ -1,0 +1,11 @@
+# Deny access to .htaccess
+<Files .htaccess>
+	Order allow,deny
+	Deny from all
+</Files>
+
+# Deny access to action.php
+<Files action.php>
+	Order allow,deny
+	Deny from all
+</Files>
