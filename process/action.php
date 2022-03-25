@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && realpath(__FILE__) == realpath($_SERVER['SCRIPT_FILENAME'])) {
+	header('HTTP/1.0 403 Forbidden', TRUE, 403);
+	die(header('Location: ../403.html'));
+}
+
 $_SESSION = null;
 $msg = null;
 
@@ -44,7 +50,7 @@ try {
 
 	$rand_num = mt_rand(1, 500);
 
-	if($rand_num == $number) {
+	if ($rand_num == $number) {
 		$_SESSION["msg"]["result"] = TRUE;
 	}
 
