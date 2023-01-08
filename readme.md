@@ -28,3 +28,15 @@ The user has to guess the randomly generated number that lies between the range 
  ![VS Code](https://img.shields.io/badge/-VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=fff)
 
 </div>
+
+## issues
+
+If you discover any issues, please using the issue tracker.
+
+## Credits
+
+-   [Nima jahan bakhshian](https://github.com/dvlpr1996)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
