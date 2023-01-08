@@ -1,9 +1,20 @@
+Options All -Indexes
+
 # Deny access to .htaccess
 <Files .htaccess>
 	Order allow,deny
 	Deny from all
 </Files>
 
-# Custom 403 errors
-RewriteEngine on
-ErrorDocument 403 http://localhost/dev/php-number-guessing/403.html
+<Files readme.md>
+	Order allow,deny
+	Deny from all
+</Files>
+
+<Files .gitignore>
+	Order allow,deny
+	Deny from all
+</Files>
+
+ErrorDocument 403 http://localhost/php-number-guessing/403.html
+ErrorDocument 404 http://localhost/php-number-guessing/404.html
